@@ -153,14 +153,14 @@ export default function SoutezPage() {
     return (
       <div className="min-h-dvh bg-[#1253CC] flex items-center justify-center p-4">
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
-          <div className="flex justify-center mb-4">
-            <LangSwitcher lang={lang} setLang={setLang} />
-          </div>
           <div className="text-7xl mb-4">&#9917;</div>
           <h1 className="text-2xl font-extrabold text-white mb-2">
             {t.title}
           </h1>
-          <p className="text-blue-100 mb-4">{t.subtitle}</p>
+          <p className="text-blue-100 mb-2">{t.subtitle}</p>
+          <div className="flex justify-center mb-4">
+            <LangSwitcher lang={lang} setLang={setLang} />
+          </div>
           <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-4 mb-4">
             <p className="text-red-200 font-semibold text-lg">
               {t.tipsClosed}
@@ -187,12 +187,12 @@ export default function SoutezPage() {
     return (
       <div className="min-h-dvh bg-[#1253CC] flex items-center justify-center p-4">
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
-          <div className="flex justify-center mb-4">
-            <LangSwitcher lang={lang} setLang={setLang} />
-          </div>
           <div className="text-7xl mb-4">&#9917;</div>
           <h2 className="text-2xl font-bold text-white mb-2">{t.tipSent}</h2>
-          <p className="text-blue-100">{t.tipSentSub}</p>
+          <p className="text-blue-100 mb-3">{t.tipSentSub}</p>
+          <div className="flex justify-center">
+            <LangSwitcher lang={lang} setLang={setLang} />
+          </div>
         </div>
       </div>
     );
@@ -201,11 +201,6 @@ export default function SoutezPage() {
   return (
     <div className="min-h-dvh bg-[#1253CC] flex items-center justify-center px-4 py-8">
       <div className="max-w-sm w-full">
-        {/* Language switcher */}
-        <div className="flex justify-center mb-4">
-          <LangSwitcher lang={lang} setLang={setLang} />
-        </div>
-
         {/* Header */}
         <div className="text-center mb-6">
           <div className="text-5xl mb-2">&#9917;</div>
@@ -215,7 +210,10 @@ export default function SoutezPage() {
           <p className="text-blue-100 mt-1 text-base font-medium">
             {t.subtitle}
           </p>
-          <p className="text-blue-100/80 text-sm mt-3 max-w-xs mx-auto leading-relaxed">
+          <div className="flex justify-center mt-3 mb-1">
+            <LangSwitcher lang={lang} setLang={setLang} />
+          </div>
+          <p className="text-blue-100/80 text-sm mt-2 max-w-xs mx-auto leading-relaxed">
             {t.description}
           </p>
         </div>
