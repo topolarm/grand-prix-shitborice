@@ -31,6 +31,11 @@ export async function checkTipsOpen(): Promise<boolean> {
   }
 }
 
+/** Strip HTML tags and trim whitespace from a string. */
+function sanitizeName(name: string): string {
+  return name.replace(/<[^>]*>/g, "").trim();
+}
+
 export async function submitTip(data: {
   viewerName: string;
   playerName: string;
@@ -39,6 +44,12 @@ export async function submitTip(data: {
 }): Promise<{ success: boolean; error?: string }> {
   try {
     const supabase = getSupabase();
+
+    // Sanitize viewer name – strip HTML tags
+    const cleanName = sanitizeName(data.viewerName);
+    if (!cleanName) {
+      return { success: false, error: "Zadejte platné jméno" };
+    }
 
     // Check if tips are open - block unless explicitly open
     const { data: session } = await supabase
@@ -52,7 +63,7 @@ export async function submitTip(data: {
     }
 
     const { error } = await supabase.from("tips").insert({
-      viewer_name: data.viewerName,
+      viewer_name: cleanName,
       player_name: data.playerName,
       player_club: data.playerClub,
       guessed_speed: data.guessedSpeed,

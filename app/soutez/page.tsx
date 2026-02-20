@@ -281,8 +281,10 @@ export default function SoutezPage() {
               type="text"
               value={viewerName}
               onChange={(e) => {
-                setViewerName(e.target.value);
-                if (e.target.value.trim()) setFieldErrors((p) => ({ ...p, name: false }));
+                // Strip < and > to prevent HTML/script injection
+                const clean = e.target.value.replace(/[<>]/g, "");
+                setViewerName(clean);
+                if (clean.trim()) setFieldErrors((p) => ({ ...p, name: false }));
               }}
               placeholder={t.namePlaceholder}
               maxLength={100}
