@@ -55,6 +55,18 @@ export default function SoutezPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, boolean>>({});
   const [tipsOpen, setTipsOpen] = useState<boolean | null>(null);
+  const [countdown, setCountdown] = useState(5);
+
+  // Countdown + redirect after successful submission
+  useEffect(() => {
+    if (status !== "success") return;
+    if (countdown <= 0) {
+      window.location.href = "https://kolovasitborice.cz";
+      return;
+    }
+    const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [status, countdown]);
 
   // Check on load + poll every 5s so closing tips is reflected in real time
   useEffect(() => {
@@ -190,7 +202,10 @@ export default function SoutezPage() {
           <div className="text-7xl mb-4">&#9917;</div>
           <h2 className="text-2xl font-bold text-white mb-2">{t.tipSent}</h2>
           <p className="text-blue-100 mb-3">{t.tipSentSub}</p>
-          <div className="flex justify-center">
+          <p className="text-blue-200 text-sm mt-4">
+            {t.redirecting} ({countdown}s)
+          </p>
+          <div className="flex justify-center mt-3">
             <LangSwitcher lang={lang} setLang={setLang} />
           </div>
         </div>

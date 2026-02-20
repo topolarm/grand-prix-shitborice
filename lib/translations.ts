@@ -25,6 +25,7 @@ export const translations = {
     errJustClosed: "Tipování bylo právě uzavřeno",
     errGeneric: "Něco se pokazilo",
     errTipsClosed: "Tipování je momentálně uzavřeno",
+    redirecting: "Budete přesměrováni na kolovasitborice.cz",
   },
   de: {
     loading: "Wird geladen...",
@@ -50,5 +51,6 @@ export const translations = {
     errJustClosed: "Die Tipprunde wurde gerade geschlossen",
     errGeneric: "Etwas ist schiefgelaufen",
     errTipsClosed: "Tipprunde ist derzeit geschlossen",
+    redirecting: "Sie werden zu kolovasitborice.cz weitergeleitet",
   },
 } as const;
